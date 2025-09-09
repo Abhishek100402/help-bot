@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Help Bot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="{{ url_for('static', filename='chat.js') }}"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width:900px; margin:auto }
+    .chat-container { border:1px solid #ddd; padding:12px; height:420px; overflow:auto; margin-bottom:12px }
+    .chat-header { font-size: 24px; margin-bottom: 12px; }
+    .chat-messages { height: 300px; overflow-y: auto; margin-bottom: 12px; }
+    .message { margin-bottom: 8px; }
+    .user { color:#0b57d0; }
+    .bot { color:#333; }
+    .chat-input { display: flex; }
+    .chat-input input { flex: 1; padding: 8px; }
+    .chat-input button { padding: 8px 12px; }
+    .typing-indicator { display: inline-block; }
+    .typing-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 2px;
+      background-color: #333;
+      border-radius: 50%;
+      animation: typing 0.6s infinite alternate;
+    }
+    @keyframes typing {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Help Bot</div>
+    <div id="messages" class="chat-messages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</body>
+</html>
