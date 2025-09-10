@@ -6,7 +6,15 @@ from dotenv import load_dotenv
 
 # Load .env if present (optional)
 load_dotenv()
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-secret-for-prod")
 
+    @app.route("/")
+    def index():
+        return "Hello from Flask factory!"
+
+    return app
 # ---------- Config ----------
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
 if not GEMINI_API_KEY:
@@ -152,3 +160,4 @@ def chat():
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get("PORT", 5000)))
+
